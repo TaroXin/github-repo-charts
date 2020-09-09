@@ -16,8 +16,6 @@ import 'egg-jsonp';
 import 'egg-view';
 import 'egg-cors';
 import 'egg-joi';
-import 'egg-ts-typeorm';
-import 'egg-jwt';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -35,7 +33,5 @@ declare module 'egg' {
     view?: EggPluginItem;
     cors?: EggPluginItem;
     joi?: EggPluginItem;
-    typeorm?: EggPluginItem;
-    jwt?: EggPluginItem;
   }
 }
