@@ -8,6 +8,8 @@
     "declarations": true
   },
   "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "start": "./node_modules/.bin/egg-scripts start --env=prod --daemon --title=github-repo-charts",
     "stop": "./node_modules/.bin/egg-scripts stop --title=github-repo-charts",
     "dev": "egg-bin dev",
@@ -18,7 +20,7 @@
     "tsc": "./node_modules/.bin/ets && ./node_modules/.bin/tsc -p tsconfig.json",
     "ci": "npm run lint && npm run cov && npm run tsc",
     "autod": "autod",
-    "lint": "./node_modules/.bin/eslint . --ext .ts --fix",
+    "lint": "./node_modules/.bin/eslint . --ext .ts,.vue,.js --fix",
     "clean": "ets clean",
     "init:cz": "commitizen init cz-conventional-changelog --save --save-exact",
     "commit": "git add . && git-cz"
@@ -34,7 +36,11 @@
     "egg-scripts": "^2.6.0",
     "joi": "^14.3.1",
     "log4js": "^6.1.2",
-    "octonode": "^0.9.5"
+    "octonode": "^0.9.5",
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
@@ -42,8 +48,13 @@
     "@types/supertest": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "@vue/cli-plugin-babel": "^3.0.0",
+    "@vue/cli-plugin-eslint": "^3.0.0",
+    "@vue/cli-service": "^3.0.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
+    "babel-eslint": "^10.0.1",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.1.0",
     "egg-bin": "^4.11.0",
@@ -52,14 +63,17 @@
     "eslint": "^6.7.2",
     "eslint-config-egg": "^8.0.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-vue": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^10.0.9",
     "prettier": "^2.0.2",
     "reflect-metadata": "^0.1.13",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
     "tslib": "^1.11.1",
     "typescript": "^3.0.0",
     "validate-commit-msg": "^2.14.0",
+    "vue-template-compiler": "^2.6.10",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
@@ -67,7 +81,7 @@
     "commit-msg": "validate-commit-msg"
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "*.{js,ts,vue}": [
       "eslint --fix",
       "git add"
     ]
