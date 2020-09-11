@@ -1,20 +1,24 @@
 import { Controller } from 'egg'
-/**
- * @controller Home 首页管理
- */
-export default class HomeController extends Controller {
-  public async test() {
-    const { ctx, app } = this
 
+export default class RepoController extends Controller {
+  /**
+   * @name 获取仓库的Star成长图表
+   * @router get /repo-charts/api/repo/starChart
+   */
+  public async starChart() {
+    const { ctx, app } = this
     // 获取该项目的第一个和最后一个 star
     // 切分时间节点为10份或者可定义的份数
     // 然后根据时间节点获取
-
     const query = `
       query {
-        user(login: "TaroXin") {
-          name
-          email
+        repository(name: "vue", owner: "vuejs") {
+          stargazers(first: 100) {
+            edges {
+              starredAt
+            }
+            totalCount
+          }
         }
       }
     `

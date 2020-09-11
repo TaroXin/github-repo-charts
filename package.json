@@ -27,8 +27,11 @@
   },
   "dependencies": {
     "@types/joi": "^14.3.4",
+    "apollo-fetch": "^0.7.0",
+    "core-js": "^2.6.5",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.23",
+    "dotenv": "^8.2.0",
     "egg": "^2.6.1",
     "egg-cors": "^2.2.3",
     "egg-joi": "^1.0.7",
@@ -37,7 +40,6 @@
     "joi": "^14.3.1",
     "log4js": "^6.1.2",
     "octonode": "^0.9.5",
-    "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
