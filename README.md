@@ -5,18 +5,24 @@
 </p>
   <p align="center">
     <a href="https://github.com/TaroXin/github-repo-charts/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/TaroXin/github-repo-charts?color=0088ff" />
+      <img alt="Issues" src="https://img.shields.io/github/stars/TaroXin/github-repo-charts?color=007755&style=for-the-badge" />
+    </a>
+    <a href="https://github.com/TaroXin/github-repo-charts/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/TaroXin/github-repo-charts?color=0088ff&style=for-the-badge" />
     </a>
     <a href="https://github.com/TaroXin/github-repo-charts/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/TaroXin/github-repo-charts?color=0088ff" />
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/TaroXin/github-repo-charts?color=0088ff&style=for-the-badge" />
     </a>
     <br />
   </p>
 
   <p align="center">
-    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">提交 Bug</a>
-    ·
-    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">提交功能需求</a>
+    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">
+      <img alt="GitHub Report Bug" src="https://img.shields.io/badge/提交Bug-%230088cc?style=for-the-badge" />
+    </a>
+    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">
+      <img alt="GitHub Report Bug" src="https://img.shields.io/badge/提交功能需求-%23ff7b2b?style=for-the-badge" />
+    </a>
   </p>
   <p align="center">
     <a href="/">简体中文</a>
