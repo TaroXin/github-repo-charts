@@ -1,2 +1,26 @@
-# github-repo-charts
-Used to generate charts of Github project indicators, use NodeJs + EggJs + Typescript to develop, it is a good study project, and you are welcome to pay attention to it !!! 🇨🇳🇨🇳🇨🇳
+<p align="center">
+ <img width="100px" src="https://gworld-others.oss-cn-shenzhen.aliyuncs.com/icon_60pt%402x.png" align="center" alt="Github Repo Charts" />
+ <h2 align="center">Guthub Repo Charts</h2>
+ <p align="center">为你的 README 生成 GitHub 仓库成长图，个人数据报表</p>
+</p>
+  <p align="center">
+    <a href="https://github.com/TaroXin/github-repo-charts/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/TaroXin/github-repo-charts?color=0088ff" />
+    </a>
+    <a href="https://github.com/TaroXin/github-repo-charts/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/TaroXin/github-repo-charts?color=0088ff" />
+    </a>
+    <br />
+  </p>
+
+  <p align="center">
+    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">提交 Bug</a>
+    ·
+    <a href="https://github.com/TaroXin/github-repo-charts/issues/new/choose">提交功能需求</a>
+  </p>
+  <p align="center">
+    <a href="/">简体中文</a>
+    ·
+    <a href="/docs/readme_en.md">English</a>
+  </p>
+</p>
