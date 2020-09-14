@@ -1,26 +1,17 @@
 module.exports = {
+  legend: {
+    width: 600,
+    height: 400,
+  },
+  animation: false,
   title: {
     text: 'juejin-im/open-source',
     subtext: 'Star growth curve',
   },
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'cross',
-      label: {
-        backgroundColor: '#6a7985',
-      },
-    },
-  },
-  toolbox: {
-    feature: {
-      saveAsImage: {},
-    },
-  },
   grid: {
-    left: '2%',
+    left: '3%',
     right: '1%',
-    bottom: '1%',
+    bottom: '0',
     containLabel: true,
   },
   xAxis: [
@@ -34,9 +25,7 @@ module.exports = {
   },
   series: [
     {
-      // name: '邮件营销',
       type: 'line',
-      // stack: '总量',
       areaStyle: {},
       data: [
         { name: '2020-08-13T13:11:02Z', value: ['2020-08-13T13:11:02Z', 1] },

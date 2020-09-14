@@ -43,6 +43,7 @@
     "jsdom": "^16.4.0",
     "log4js": "^6.1.2",
     "octonode": "^0.9.5",
+    "puppeteer": "^5.3.0",
     "svg-chartist": "^1.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
