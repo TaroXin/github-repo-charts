@@ -26,23 +26,28 @@
     "commit": "git add . && git-cz"
   },
   "dependencies": {
+    "@types/echarts": "^4.6.5",
     "@types/joi": "^14.3.4",
     "apollo-fetch": "^0.7.0",
     "core-js": "^2.6.5",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.23",
     "dotenv": "^8.2.0",
+    "echarts": "^4.9.0",
     "egg": "^2.6.1",
     "egg-cors": "^2.2.3",
     "egg-joi": "^1.0.7",
     "egg-jwt": "^3.1.7",
     "egg-scripts": "^2.6.0",
     "joi": "^14.3.1",
+    "jsdom": "^16.4.0",
     "log4js": "^6.1.2",
     "octonode": "^0.9.5",
+    "svg-chartist": "^1.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "zrender": "^4.3.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
