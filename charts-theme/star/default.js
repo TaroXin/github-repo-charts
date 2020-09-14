@@ -1,13 +1,18 @@
 module.exports = (data) => {
   return {
-    legend: {
-      width: 600,
-      height: 400,
-    },
     animation: false,
     title: {
       text: 'juejin-im/open-source',
-      subtext: 'Star growth curve',
+      textStyle: {
+        color: '#2468cf',
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
+      subtext: 'Star growth curve.  Power by Github-Repo-Charts',
+      subtextStyle: {
+        color: '#7e848a',
+        fontSize: 12,
+      },
     },
     grid: {
       left: '3%',
@@ -19,18 +24,37 @@ module.exports = (data) => {
       {
         type: 'time',
         boundaryGap: false,
+        nameLocation: 'center',
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
       },
     ],
     yAxis: {
       position: 'right',
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
     },
     series: [
       {
         type: 'line',
-        areaStyle: {},
         data,
         smooth: true,
+        smoothMonotone: 'x',
         symbol: 'none',
+        lineStyle: {
+          color: '#2468cf',
+        },
+        areaStyle: {
+          color: '#2468cf',
+        },
       },
     ],
   }
