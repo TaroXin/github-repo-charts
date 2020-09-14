@@ -10,6 +10,11 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-joi',
   },
+
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
 }
 
 export default plugin

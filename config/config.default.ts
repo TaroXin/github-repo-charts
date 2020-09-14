@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
+require('dotenv').config({ path: '.env' })
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>
@@ -27,6 +28,15 @@ export default (appInfo: EggAppInfo) => {
       'zh-cn': {},
     },
     throw: true,
+  }
+
+  config.redis = {
+    client: {
+      port: Number(process.env.REDIS_PORT),
+      host: process.env.REDIS_IP,
+      password: process.env.REDIS_PASSWORD,
+      db: 0,
+    },
   }
 
   return {

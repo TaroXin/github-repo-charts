@@ -8,7 +8,28 @@ export default class RepoController extends Controller {
    */
   public async starChart() {
     const { ctx, app } = this
-    const list = await getStarList(app, 'open-source', 'juejin-im')
-    ctx.resSucc(list)
+    const params = ctx.validate(app.validator.repo.starChart, ctx.query, {
+      allowUnknown: true,
+    })
+
+    const { repo, owner } = params.value
+
+    const cacheKey = `${owner}/${repo}`
+    const cacheData = await app.redis.get(cacheKey)
+    let starList: any[] = []
+    if (cacheData) {
+      starList = JSON.parse(cacheData)
+    } else {
+      starList = await getStarList(app, repo, owner)
+      await app.redis.set(
+        cacheKey,
+        JSON.stringify(starList),
+        'EX',
+        3600 * 2 // redis 缓存请求结果 2小时
+      )
+    }
+    ctx.resSucc({
+      list: starList,
+    })
   }
 }
