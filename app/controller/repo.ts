@@ -28,8 +28,6 @@ export default class RepoController extends Controller {
         3600 * 2 // redis 缓存请求结果 2小时
       )
     }
-    ctx.resSucc({
-      list: starList,
-    })
+    await ctx.resStarCharts(starList)
   }
 }

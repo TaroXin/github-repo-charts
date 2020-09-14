@@ -56,3 +56,11 @@ export async function getStarList(
   }
   return starList
 }
+
+// 把接口返回的数据格式化成 Echarts 需要的数据
+export function formatStarData(data: any[]): any[] {
+  return data.map((item, index) => ({
+    name: item.starredAt,
+    value: [item.starredAt, index + 1],
+  }))
+}

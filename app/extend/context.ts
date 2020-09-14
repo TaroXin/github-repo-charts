@@ -1,5 +1,7 @@
 // app/extend/context.ts
 import { Context } from 'egg'
+import { formatStarData } from '../utils/star'
+import { starChartsRender } from '../utils/charts-render'
 
 export default {
   resSucc(this: Context, data: Record<string, any> = {}) {
@@ -28,5 +30,15 @@ export default {
       code,
       message,
     }
+  },
+
+  async resStarCharts(this: Context, data: any[]) {
+    data = formatStarData(data)
+    const svg = await starChartsRender(data)
+    this.set('content-type', 'image/svg+xml;charset=utf-8')
+    this.set('cache-control', 'public, max-age=86400')
+    this.set('date', new Date().toDateString())
+    this.set('expires', new Date(Date.now() + 3600 * 2 * 1000).toDateString())
+    this.body = svg
   },
 }
