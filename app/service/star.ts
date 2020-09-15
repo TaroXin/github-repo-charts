@@ -2,12 +2,16 @@ import { Service } from 'egg'
 import { RequestOptions2 as RequestOptions } from 'urllib'
 
 export default class HomeService extends Service {
-  // 获得Star总数目
-  async getStarTotalCount(repo: string, owner: string): Promise<number> {
+  // 获得Star总数目 [totalCount, createdAt]
+  async getStarTotalCount(
+    repo: string,
+    owner: string
+  ): Promise<[number, string]> {
     const { ctx, app } = this
     const query = `
       query($repo: String!, $owner: String!) {
         repository(name: $repo, owner: $owner) {
+          createdAt
           stargazers {
             totalCount
           }
@@ -29,19 +33,19 @@ export default class HomeService extends Service {
       throw new Error(message)
     }
 
-    return data.repository.stargazers.totalCount
+    return [data.repository.stargazers.totalCount, data.repository.createdAt]
   }
 
   // 获取 Star 列表
   async getStarListWithREST(
     repo: string,
     owner: string,
-    totalCount: number
+    totalCount: number,
+    createdAt: string
   ): Promise<any[]> {
     console.log('获取仓库Star列表', `${owner}/${repo}`)
 
     const { ctx } = this
-    const page = 1
     const options: RequestOptions = {
       headers: {
         Accept: 'application/vnd.github.v3.star+json',
@@ -53,7 +57,7 @@ export default class HomeService extends Service {
     }
 
     let promises: Promise<any>[] = []
-    if (totalCount <= 1000) {
+    if (totalCount <= 500) {
       promises = new Array(Math.ceil(totalCount / 100)).fill(null)
       promises = promises.map((_, index) => {
         return new Promise(async (resolve) => {
@@ -66,23 +70,36 @@ export default class HomeService extends Service {
           resolve(JSON.parse(res.data.toString()))
         })
       })
+    } else {
+      // 对大于1000star的项目采用抽样形式，无法做到较为精确
+      // 1000 个也搞不了，哎，五百个吧😌
+      promises = new Array(5).fill(null)
+      promises = promises.map((_, index) => {
+        return new Promise(async (resolve) => {
+          const res = await ctx.curl(
+            `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${
+              index + 1
+            }&per_page=100`,
+            options
+          )
+          resolve(JSON.parse(res.data.toString()))
+          console.log(JSON.parse(res.data.toString()))
+        })
+      })
     }
 
-    let data: any[] = []
+    const data: any[] = []
     if (promises.length) {
       const list = await Promise.all(promises)
       list.forEach((item) => data.push(...item))
-    } else {
-      const res = await ctx.curl(
-        `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${page}&per_page=100`,
-        options
-      )
-      data = res.data
     }
 
+    // 第一个Star为0的时候应该是项目创建的时候
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    data.unshift({ starred_at: createdAt })
     return data.map((item, index) => ({
       name: item.starred_at,
-      value: [item.starred_at, index + 1],
+      value: [item.starred_at, index],
     }))
   }
 }

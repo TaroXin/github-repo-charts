@@ -7,6 +7,6 @@ export default (app: Application) => {
   router.get('/', controller.home.test)
 
   // 仓库相关
-  const repoRouteBase = '/repo-charts/api/repo'
+  const repoRouteBase = '/api/repo'
   router.get(`${repoRouteBase}/starChart`, app.controller.repo.starChart)
 }

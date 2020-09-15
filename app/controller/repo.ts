@@ -19,11 +19,15 @@ export default class RepoController extends Controller {
     if (cacheData) {
       starList = JSON.parse(cacheData)
     } else {
-      const totalCount = await ctx.service.star.getStarTotalCount(repo, owner)
+      const [totalCount, createdAt] = await ctx.service.star.getStarTotalCount(
+        repo,
+        owner
+      )
       starList = await ctx.service.star.getStarListWithREST(
         repo,
         owner,
-        totalCount
+        totalCount,
+        createdAt
       )
       await app.redis.set(
         cacheKey,

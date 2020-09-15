@@ -42,4 +42,6 @@
   <img alt="juejin-im/open-source 成长轨迹" src="http://repo-charts.taroxin.cn/repo-charts/api/repo/starChart?repo=open-source&owner=juejin-im" />
 </p>
 
-![](http://repo-charts.taroxin.cn/repo-charts/api/repo/starChart?repo=DotNetCore.RabbitMQ.Extensions&owner=heyehang)
+<p align="center">
+  <img alt="juejin-im/open-source 成长轨迹" src="http://repo-charts.taroxin.cn/repo-charts/api/repo/starChart?repo=DotNetCore.RabbitMQ.Extensions&owner=heyehang" />
+</p>
