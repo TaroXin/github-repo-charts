@@ -30,3 +30,14 @@
     <a href="/docs/readme_en.md">English</a>
   </p>
 </p>
+
+
+
+#### 示例图表
+<p align="center">
+  <img alt="vue-pertty-logger 成长轨迹" src="http://repo-charts.taroxin.cn/repo-charts/api/repo/starChart?repo=vue-pretty-logger&owner=TaroXin" />
+</p>
+
+<p align="center">
+  <img alt="juejin-im/open-source 成长轨迹" src="http://repo-charts.taroxin.cn/repo-charts/api/repo/starChart?repo=open-source&owner=juejin-im" />
+</p>
