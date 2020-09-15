@@ -1,5 +1,4 @@
 import { Controller } from 'egg'
-import { getStarList } from '../utils/star'
 
 export default class RepoController extends Controller {
   /**
@@ -12,7 +11,7 @@ export default class RepoController extends Controller {
       allowUnknown: true,
     })
 
-    const { repo, owner } = params.value
+    const { repo, owner, title, subtitle } = params.value
 
     const cacheKey = `${owner}/${repo}`
     const cacheData = await app.redis.get(cacheKey)
@@ -20,7 +19,12 @@ export default class RepoController extends Controller {
     if (cacheData) {
       starList = JSON.parse(cacheData)
     } else {
-      starList = await getStarList(app, repo, owner)
+      const totalCount = await ctx.service.star.getStarTotalCount(repo, owner)
+      starList = await ctx.service.star.getStarListWithREST(
+        repo,
+        owner,
+        totalCount
+      )
       await app.redis.set(
         cacheKey,
         JSON.stringify(starList),
@@ -28,6 +32,10 @@ export default class RepoController extends Controller {
         3600 * 2 // redis 缓存请求结果 2小时
       )
     }
-    await ctx.resStarCharts(starList)
+    await ctx.resStarCharts(starList, {
+      title: title || cacheKey,
+      subtitle: subtitle || 'Star成长曲线图',
+      theme: 'default',
+    })
   }
 }

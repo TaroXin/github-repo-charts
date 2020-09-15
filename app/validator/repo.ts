@@ -8,6 +8,8 @@ export default (app: Application) => {
     starChart: Joi.object().keys({
       repo: Joi.string().required(),
       owner: Joi.string().required(),
+      title: Joi.string(),
+      subtitle: Joi.string(),
     }),
   }
 }

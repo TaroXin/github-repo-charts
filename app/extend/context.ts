@@ -1,7 +1,7 @@
 // app/extend/context.ts
 import { Context } from 'egg'
-import { formatStarData } from '../utils/star'
 import { starChartsRender } from '../utils/charts-render'
+import ChartsOptions from '../entity/ChartsOptions'
 
 export default {
   resSucc(this: Context, data: Record<string, any> = {}) {
@@ -32,9 +32,8 @@ export default {
     }
   },
 
-  async resStarCharts(this: Context, data: any[]) {
-    data = formatStarData(data)
-    const svg = await starChartsRender(data)
+  async resStarCharts(this: Context, data: any[], options: ChartsOptions) {
+    const svg = await starChartsRender(data, options)
     this.set('content-type', 'image/svg+xml;charset=utf-8')
     this.set('cache-control', 'public, max-age=86400')
     this.set('date', new Date().toDateString())

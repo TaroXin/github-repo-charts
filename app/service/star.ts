@@ -44,44 +44,45 @@ export default class HomeService extends Service {
     const page = 1
     const options: RequestOptions = {
       headers: {
+        Accept: 'application/vnd.github.v3.star+json',
         Authorization: 'bearer ' + process.env.GITHUB_ACCESS_TOKEN,
       },
       contentType: 'json',
-      dataType: 'json',
       timeout: 1000 * 60,
       retry: 7,
     }
 
     let promises: Promise<any>[] = []
     if (totalCount <= 1000) {
-      promises = new Array(Math.ceil(totalCount / 100)).map(
-        async (_, index) => {
-          return await ctx
-            .curl(
-              `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${
-                index + 1
-              }&per_page=100`,
-              options
-            )
-            .then(({ data }) => {
-              return data
-            })
-        }
-      )
+      promises = new Array(Math.ceil(totalCount / 100)).fill(null)
+      promises = promises.map((_, index) => {
+        return new Promise(async (resolve) => {
+          const res = await ctx.curl(
+            `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${
+              index + 1
+            }&per_page=100`,
+            options
+          )
+          resolve(JSON.parse(res.data.toString()))
+        })
+      })
     }
 
+    let data: any[] = []
     if (promises.length) {
-      const data: any[] = []
       const list = await Promise.all(promises)
-      console.log(list)
       list.forEach((item) => data.push(...item))
-      return data
     } else {
-      const { data } = await ctx.curl(
+      const res = await ctx.curl(
         `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${page}&per_page=100`,
         options
       )
-      return data
+      data = res.data
     }
+
+    return data.map((item, index) => ({
+      name: item.starred_at,
+      value: [item.starred_at, index + 1],
+    }))
   }
 }

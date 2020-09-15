@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import puppeteer = require('puppeteer')
+import ChartsOptions from '../entity/ChartsOptions'
 
 const render = async (options): Promise<string> => {
   const browser = await puppeteer.launch({
@@ -43,8 +44,11 @@ const render = async (options): Promise<string> => {
 
 export async function starChartsRender(
   data: any[],
-  theme = 'default'
+  options: ChartsOptions
 ): Promise<string> {
-  const options = require(`../../charts-theme/star/${theme}.js`)(data)
-  return await render(options)
+  const optionData = require(`../../charts-theme/star/${options.theme}.js`)(
+    data,
+    options
+  )
+  return await render(optionData)
 }

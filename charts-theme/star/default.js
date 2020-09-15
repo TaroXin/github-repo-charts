@@ -1,14 +1,14 @@
-module.exports = (data) => {
+module.exports = (data, options) => {
   return {
     animation: false,
     title: {
-      text: 'juejin-im/open-source',
+      text: options.title,
       textStyle: {
         color: '#2468cf',
         fontSize: 18,
         fontWeight: 'bold',
       },
-      subtext: 'Star growth curve.  Power by Github-Repo-Charts',
+      subtext: options.subtitle + '.  Powered by github-repo-charts',
       subtextStyle: {
         color: '#7e848a',
         fontSize: 12,
