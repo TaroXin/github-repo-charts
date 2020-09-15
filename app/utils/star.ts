@@ -51,9 +51,10 @@ export async function getStarList(
       `, after: "${data.repository.stargazers.pageInfo.endCursor}"`,
       totalStarCount - 100
     )
-    console.log(secondList, '获取第二次')
     starList.push(...secondList)
   }
+
+  // 如果 star 的总数大于 1000，则需要对整个Star列表进行抽样查询
   return starList
 }
 

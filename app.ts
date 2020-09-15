@@ -10,6 +10,7 @@ export default (app: Application) => {
     const apolloFetch = createApolloFetch({
       uri: 'https://api.github.com/graphql',
     })
+
     apolloFetch.use(({ options }, next) => {
       if (!options.headers) {
         options.headers = {}
@@ -17,6 +18,8 @@ export default (app: Application) => {
       options.headers[
         'authorization'
       ] = `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`
+      options.headers['Accept'] = 'application/vnd.github.cloak-preview'
+      options.headers['Content-Type'] = 'application/json'
       next()
     })
     app.apolloFetch = apolloFetch
