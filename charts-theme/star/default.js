@@ -1,25 +1,36 @@
 module.exports = (data, options) => {
+  const grid = {
+    left: '3%',
+    right: '1%',
+    bottom: '0',
+    containLabel: true,
+  }
+
+  if (!options.showTitle && !options.showSubtitle) {
+    grid.top = '2%'
+  } else if (!options.showTitle || !options.showSubtitle) {
+    grid.top = '40px'
+  }
+
   return {
     animation: false,
     title: {
-      text: options.title,
+      show: options.showTitle || options.showSubtitle,
+      text: options.showTitle ? options.title : '',
       textStyle: {
         color: '#2468cf',
         fontSize: 18,
         fontWeight: 'bold',
       },
-      subtext: options.subtitle + '.  Powered by github-repo-charts',
+      subtext: options.showSubtitle
+        ? options.subtitle + '.  Powered by github-repo-charts'
+        : '',
       subtextStyle: {
         color: '#7e848a',
         fontSize: 12,
       },
     },
-    grid: {
-      left: '3%',
-      right: '1%',
-      bottom: '0',
-      containLabel: true,
-    },
+    grid,
     xAxis: [
       {
         type: 'time',

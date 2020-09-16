@@ -6,11 +6,13 @@ type AnyClass = new (...args: any[]) => any;
 type AnyFunc<T = any> = (...args: any[]) => T;
 type CanExportFunc = AnyFunc<Promise<any>> | AnyFunc<IterableIterator<any>>;
 type AutoInstanceType<T, U = T extends CanExportFunc ? T : T extends AnyFunc ? ReturnType<T> : T> = U extends AnyClass ? InstanceType<U> : U;
+import ExportFork from '../../../app/service/fork';
 import ExportHome from '../../../app/service/home';
 import ExportStar from '../../../app/service/star';
 
 declare module 'egg' {
   interface IService {
+    fork: AutoInstanceType<typeof ExportFork>;
     home: AutoInstanceType<typeof ExportHome>;
     star: AutoInstanceType<typeof ExportStar>;
   }

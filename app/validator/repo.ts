@@ -10,6 +10,8 @@ export default (app: Application) => {
       owner: Joi.string().required(),
       title: Joi.string(),
       subtitle: Joi.string(),
+      showTitle: Joi.boolean().default(true),
+      showSubtitle: Joi.boolean().default(true),
     }),
   }
 }

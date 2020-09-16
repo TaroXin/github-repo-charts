@@ -11,7 +11,14 @@ export default class RepoController extends Controller {
       allowUnknown: true,
     })
 
-    const { repo, owner, title, subtitle } = params.value
+    const {
+      repo,
+      owner,
+      title,
+      subtitle,
+      showTitle,
+      showSubtitle,
+    } = params.value
 
     const cacheKey = `${owner}/${repo}`
     const cacheData = await app.redis.get(cacheKey)
@@ -40,6 +47,8 @@ export default class RepoController extends Controller {
       title: title || cacheKey,
       subtitle: subtitle || 'Star成长曲线图',
       theme: 'default',
+      showTitle,
+      showSubtitle,
     })
   }
 
