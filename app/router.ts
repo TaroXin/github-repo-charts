@@ -9,4 +9,5 @@ export default (app: Application) => {
   // 仓库相关
   const repoRouteBase = '/api/repo'
   router.get(`${repoRouteBase}/starChart`, app.controller.repo.starChart)
+  router.get(`${repoRouteBase}/forkChart`, app.controller.repo.forkChart)
 }

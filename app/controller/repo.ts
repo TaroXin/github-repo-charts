@@ -3,7 +3,7 @@ import { Controller } from 'egg'
 export default class RepoController extends Controller {
   /**
    * @name 获取仓库的Star成长图表
-   * @router get /repo-charts/api/repo/starChart
+   * @router get /api/repo/starChart
    */
   public async starChart() {
     const { ctx, app } = this
@@ -41,5 +41,14 @@ export default class RepoController extends Controller {
       subtitle: subtitle || 'Star成长曲线图',
       theme: 'default',
     })
+  }
+
+  /**
+   * @name 获取仓库的Fork成长图例
+   * @router get /api/repo/forkChart
+   */
+  public async forkChart() {
+    const { ctx } = this
+    ctx.resSucc()
   }
 }

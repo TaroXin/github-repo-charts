@@ -1,7 +1,7 @@
 import { Service } from 'egg'
 import { RequestOptions2 as RequestOptions } from 'urllib'
 
-export default class HomeService extends Service {
+export default class StarService extends Service {
   // 获得Star总数目 [totalCount, createdAt]
   async getStarTotalCount(
     repo: string,
