@@ -34,11 +34,9 @@
 ## 特性
 * [生成 Github 仓库 Stars 成长图例](#生成-Github-仓库-Stars-成长图例)
 * [生成 Github 仓库 Forks 成长图例](#生成-Github-仓库-Forks-成长图例)
-* 生成仓库语言占比饼图
-* 生成原创项目 Star 与 Fork 对比柱状图
-* 生成 Github 数据主页
 * [全部 Demo](#全部-Demo)
 * [开发](#开发)
+* [TODO](#TODO)
 
 ## 生成 Github 仓库 Stars 成长图例
 
@@ -107,3 +105,8 @@ npm run dev
 open http://localhost:7001/api/repo/starChart
 ```
 你会得到一个`422`错误，来提醒你缺少响应的参数配置
+
+## TODO
+* 生成仓库语言占比饼图
+* 生成原创项目 Star 与 Fork 对比柱状图
+* 生成 Github 数据主页
