@@ -18,46 +18,61 @@ export default class RepoController extends Controller {
       subtitle,
       showTitle,
       showSubtitle,
+      from,
     } = params.value
 
-    const cacheKey = `${owner}/${repo}`
+    const repoFullname = `${owner}/${repo}`
+    const cacheKey = `${repoFullname}/${from}`
     const cacheData = await app.redis.get(cacheKey)
-    let starList: any[] = []
+    let dataList: any[] = []
     if (cacheData) {
-      starList = JSON.parse(cacheData)
+      dataList = JSON.parse(cacheData)
     } else {
-      const [totalCount, createdAt] = await ctx.service.star.getStarTotalCount(
-        repo,
-        owner
-      )
-      starList = await ctx.service.star.getStarListWithREST(
-        repo,
-        owner,
-        totalCount,
-        createdAt
-      )
-      await app.redis.set(
-        cacheKey,
-        JSON.stringify(starList),
-        'EX',
-        3600 * 2 // redis 缓存请求结果 2小时
-      )
+      if (from === 'star') {
+        const [
+          totalCount,
+          createdAt,
+        ] = await ctx.service.star.getStarTotalCount(repo, owner)
+        dataList = await ctx.service.star.getStarListWithREST(
+          repo,
+          owner,
+          totalCount,
+          createdAt
+        )
+        await app.redis.set(
+          cacheKey,
+          JSON.stringify(dataList),
+          'EX',
+          3600 * 2 // redis 缓存请求结果 2小时
+        )
+      } else {
+        const [
+          totalCount,
+          createdAt,
+        ] = await ctx.service.fork.getStarTotalCount(repo, owner)
+        dataList = await ctx.service.fork.getForkListWithREST(
+          repo,
+          owner,
+          totalCount,
+          createdAt
+        )
+        await app.redis.set(
+          cacheKey,
+          JSON.stringify(dataList),
+          'EX',
+          3600 * 2 // redis 缓存请求结果 2小时
+        )
+      }
     }
-    await ctx.resStarCharts(starList, {
-      title: title || cacheKey,
-      subtitle: subtitle || 'Star成长曲线图',
+
+    const defaultSubtitle =
+      from === 'star' ? 'Star成长曲线图' : 'Fork成长曲线图'
+    await ctx.resStarCharts(dataList, {
+      title: title || repoFullname,
+      subtitle: subtitle || defaultSubtitle,
       theme: 'default',
       showTitle,
       showSubtitle,
     })
-  }
-
-  /**
-   * @name 获取仓库的Fork成长图例
-   * @router get /api/repo/forkChart
-   */
-  public async forkChart() {
-    const { ctx } = this
-    ctx.resSucc()
   }
 }

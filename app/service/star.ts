@@ -56,15 +56,14 @@ export default class StarService extends Service {
       retry: 7,
     }
 
+    const url = `https://api.github.com/repos/${owner}/${repo}/stargazers`
     let promises: Promise<any>[] = []
     if (totalCount <= 500) {
       promises = new Array(Math.ceil(totalCount / 100)).fill(null)
       promises = promises.map((_, index) => {
         return new Promise(async (resolve) => {
           const res = await ctx.curl(
-            `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${
-              index + 1
-            }&per_page=100`,
+            `${url}?page=${index + 1}&per_page=100`,
             options
           )
           resolve(JSON.parse(res.data.toString()))
@@ -78,9 +77,7 @@ export default class StarService extends Service {
       promises = promises.map((_, index) => {
         return new Promise(async (resolve) => {
           const res = await ctx.curl(
-            `https://api.github.com/repos/${owner}/${repo}/stargazers?page=${
-              index + 1
-            }&per_page=100`,
+            `${url}?page=${index + 1}&per_page=100`,
             options
           )
           resolve(JSON.parse(res.data.toString()))

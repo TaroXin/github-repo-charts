@@ -12,6 +12,7 @@ export default (app: Application) => {
       subtitle: Joi.string(),
       showTitle: Joi.boolean().default(true),
       showSubtitle: Joi.boolean().default(true),
+      from: Joi.string().valid('star', 'fork').default('star'),
     }),
   }
 }
