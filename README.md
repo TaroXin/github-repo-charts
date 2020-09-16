@@ -72,6 +72,7 @@
 ## 全部 Demo
 ![](http://repo-charts.taroxin.cn/api/repo/starChart?repo=vue-pretty-logger&owner=TaroXin)
 ![](http://repo-charts.taroxin.cn/api/repo/starChart?repo=open-source&owner=juejin-im)
+![](http://repo-charts.taroxin.cn/api/repo/starChart?repo=open-source&owner=juejin-im&from=fork)
 
 ## 开发
 
