@@ -49,6 +49,7 @@
 
 在图例中，我们默认使用 `${owner}/${repo}` 的形式作为主标题，`Star 成长曲线` 作为副标题，你也可以通过传参来修改他们
 修改 `title=` 为你的主标题，`subtitle=` 为你的副标题
+
 你也可以使用 `showTitle=true` 或者 `showSubtitle=false` 来控制主标题与副标题的隐藏
 ```md
 ![TaroXin Repo Star](http://repo-charts.taroxin.cn/api/repo/starChart?repo=vue-pretty-logger&owner=TaroXin&title=My-Repo-Star&subtitle=我的仓库成长轨迹)
