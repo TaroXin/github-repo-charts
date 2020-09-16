@@ -72,6 +72,7 @@ export default class HomeService extends Service {
       })
     } else {
       // 对大于1000star的项目采用抽样形式，无法做到较为精确
+      // 抽样有限制，Github API限制页数过多的请求，不知道怎么解决
       // 1000 个也搞不了，哎，五百个吧😌
       promises = new Array(5).fill(null)
       promises = promises.map((_, index) => {
@@ -83,7 +84,6 @@ export default class HomeService extends Service {
             options
           )
           resolve(JSON.parse(res.data.toString()))
-          console.log(JSON.parse(res.data.toString()))
         })
       })
     }
