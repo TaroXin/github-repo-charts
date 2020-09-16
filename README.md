@@ -85,7 +85,7 @@ git clone https://github.com/TaroXin/github-repo-charts.git
 cd github-repo-charts && npm i
 ```
 
-### 步骤二
+#### 步骤二
 新建 `.env` 文件，这是我们的私有变量文件，存储个人的`Github Access Token`以及我们需要用作数据缓存的`Redis`相关配置，以下配置不可用，需要你配置好自己的数据
 ```bash
 GITHUB_ACCESS_TOKEN=<Your Token>
@@ -96,7 +96,7 @@ REDIS_PASSWORD=<Redis password>
 
 ```
 
-### 步骤三
+#### 步骤三
 运行项目，并访问
 ```bash
 npm run dev
