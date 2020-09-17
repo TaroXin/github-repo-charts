@@ -20,13 +20,15 @@ module.exports = (data, options) => {
   }
 
   if (options.legendItems.length > 5) {
-    legend = new Array(Math.ceil(options.legendItems.length / 5))
-      .fill(null)
-      .map((_, index) => ({
-        left: 'center',
-        top: 'bottom',
-        data: options.legendItems.slice(index * 5, index * 5 + 5),
-      }))
+    const tempArray = new Array(Math.ceil(options.legendItems.length / 5)).fill(
+      null
+    )
+    const bottom = (tempArray.length - 1) * 25
+    legend = tempArray.map((_, index) => ({
+      left: 'center',
+      bottom: bottom - index * 25,
+      data: options.legendItems.slice(index * 5, index * 5 + 5),
+    }))
   }
 
   return {
@@ -51,9 +53,13 @@ module.exports = (data, options) => {
     series: [
       {
         type: 'pie',
-        radius: [30, 110],
+        radius: [20, 120],
         roseType: 'area',
         data,
+        minShowLabelAngle: 5,
+        label: {
+          formatter: '{b}: {d}%',
+        },
       },
     ],
   }

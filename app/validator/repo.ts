@@ -16,7 +16,8 @@ export default (app: Application) => {
     }),
 
     languageChart: Joi.object().keys({
-      login: Joi.string().required(),
+      owner: Joi.string().required(),
+      repo: Joi.string(),
     }),
   }
 }

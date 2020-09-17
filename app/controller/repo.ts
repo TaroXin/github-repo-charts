@@ -78,7 +78,7 @@ export default class RepoController extends Controller {
   }
 
   /**
-   * @name 获取语言饼图
+   * @name 获取语言玫瑰图
    * @router get /api/repo/languageChart
    */
   public async languageChart() {
@@ -87,17 +87,30 @@ export default class RepoController extends Controller {
       allowUnknown: true,
     })
 
-    const { login } = params.value
+    const { owner, repo } = params.value
 
-    const cacheKey = `language/${login}`
+    const cacheKey = repo ? `language/${owner}/${repo}` : `language/${owner}`
     const cacheData = await app.redis.get(cacheKey)
     let dataList: any[] = []
     let colors: string[] = []
     let legendItems: string[] = []
     if (cacheData) {
       const [nodes, colorNodes, items] = formatLanguageList(
-        JSON.parse(cacheData)
+        JSON.parse(cacheData),
+        !!repo
       )
+      dataList = nodes
+      colors = colorNodes
+      legendItems = items
+    } else {
+      const loadedData = await ctx.service.language.getLanguageList(owner, repo)
+      await app.redis.set(
+        cacheKey,
+        JSON.stringify(loadedData),
+        'EX',
+        3600 * 2 // redis 缓存请求结果 2小时
+      )
+      const [nodes, colorNodes, items] = formatLanguageList(loadedData, !!repo)
       dataList = nodes
       colors = colorNodes
       legendItems = items
@@ -106,7 +119,7 @@ export default class RepoController extends Controller {
     await ctx.resCharts(
       dataList,
       {
-        title: `${login}'s Language`,
+        title: `${owner}'s Language`,
         subtitle: '',
         showTitle: true,
         showSubtitle: true,
