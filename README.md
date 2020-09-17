@@ -1,6 +1,6 @@
 <p align="center">
  <img width="100px" src="https://gworld-others.oss-cn-shenzhen.aliyuncs.com/icon_60pt%402x.png" align="center" alt="Github Repo Charts" />
- <h2 align="center">Guthub Repo Charts</h2>
+ <h2 align="center">Github Repo Charts</h2>
  <p align="center">为你的 README 生成 GitHub 仓库成长图，个人数据报表</p>
 </p>
   <p align="center">
@@ -77,7 +77,7 @@
 
 ## 开发
 
-如果你有意参与此项目，或者你仅仅只是想本地运行，那么你只需要一下步骤即可正常运行
+如果你有意参与此项目，或者你仅仅只是想本地运行，那么你只需要以下步骤即可正常运行
 
 #### 步骤一
 我们需要你把项目正确的clone下来，并安装相关依赖，需要注意的是，项目中含有 [puppeteer](https://github.com/puppeteer/puppeteer) 相关依赖，如果存在下载不成功的情况，请参阅其他文档
@@ -104,7 +104,7 @@ REDIS_PASSWORD=<Redis password>
 npm run dev
 open http://localhost:7001/api/repo/starChart
 ```
-你会得到一个`422`错误，来提醒你缺少响应的参数配置
+你会得到一个`422`错误，来提醒你缺少相应的参数配置
 
 ## TODO
 * 生成仓库语言占比饼图
