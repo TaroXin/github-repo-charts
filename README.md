@@ -34,6 +34,7 @@
 ## 特性
 * [生成 Github 仓库 Stars 成长图例](#生成-Github-仓库-Stars-成长图例)
 * [生成 Github 仓库 Forks 成长图例](#生成-Github-仓库-Forks-成长图例)
+* [生成仓库语言图](#生成仓库语言图)
 * [全部 Demo](#全部-Demo)
 * [开发](#开发)
 * [TODO](#TODO)
@@ -69,6 +70,31 @@
 ```md
 ![TaroXin Repo Star](http://repo-charts.taroxin.cn/api/repo/starChart?repo=vue-pretty-logger&owner=TaroXin&from=form)
 ```
+
+## 生成仓库语言图
+
+该图例支持两种生成方式，当 `owner=` 不为空时，会获得该用户名下所有仓库的语言图，如果 `owner=` 和 `repo=` 皆不为空的时候，会生成该仓库的语言图<br>
+> 图例的颜色选项来自 GitHub, GitHub 对每一种语言都有唯一的颜色定义
+
+#### 获取用户所有语言
+```md
+![TaroXin Language](http://repo-charts.taroxin.cn/api/repo/languageChart?owner=TaroXin)
+```
+
+<p align="center">
+  <img alt="TaroXin Language" src="http://repo-charts.taroxin.cn/api/repo/languageChart?owner=TaroXin" />
+</p>
+
+
+#### 获取单个仓库语言
+
+```md
+![TaroXin Repo Language](http://repo-charts.taroxin.cn/api/repo/languageChart?owner=TaroXin&repo=vue-pretty-logger)
+```
+
+<p align="center">
+  <img alt="TaroXin Repo Language" src="http://repo-charts.taroxin.cn/api/repo/languageChart?owner=TaroXin&repo=vue-pretty-logger" />
+</p>
 
 ## 全部 Demo
 ![](http://repo-charts.taroxin.cn/api/repo/starChart?repo=vue-pretty-logger&owner=TaroXin)
@@ -107,6 +133,6 @@ open http://localhost:7001/api/repo/starChart
 你会得到一个`422`错误，来提醒你缺少相应的参数配置
 
 ## TODO
-* 生成仓库语言占比饼图
 * 生成原创项目 Star 与 Fork 对比柱状图
 * 生成 Github 数据主页
+* Docker 私有化部署
