@@ -3,7 +3,7 @@
 const path = require('path')
 
 module.exports = {
-  publicPath: '/html',
+  publicPath: '/',
   pages: {
     index: {
       entry: 'html/src/main.js',
