@@ -52,3 +52,14 @@ export async function starChartsRender(
   )
   return await render(optionData)
 }
+
+export async function languageChartsRender(
+  data: any[],
+  options: ChartsOptions
+): Promise<string> {
+  const optionData = require(`../../charts-theme/language/${options.theme}.js`)(
+    data,
+    options
+  )
+  return await render(optionData)
+}

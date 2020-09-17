@@ -1,4 +1,5 @@
 import { Controller } from 'egg'
+import { formatLanguageList } from '../utils'
 
 export default class RepoController extends Controller {
   /**
@@ -67,12 +68,53 @@ export default class RepoController extends Controller {
 
     const defaultSubtitle =
       from === 'star' ? 'Star成长曲线图' : 'Fork成长曲线图'
-    await ctx.resStarCharts(dataList, {
+    await ctx.resCharts(dataList, {
       title: title || repoFullname,
       subtitle: subtitle || defaultSubtitle,
       theme: 'default',
       showTitle,
       showSubtitle,
     })
+  }
+
+  /**
+   * @name 获取语言饼图
+   * @router get /api/repo/languageChart
+   */
+  public async languageChart() {
+    const { ctx, app } = this
+    const params = ctx.validate(app.validator.repo.languageChart, ctx.query, {
+      allowUnknown: true,
+    })
+
+    const { login } = params.value
+
+    const cacheKey = `language/${login}`
+    const cacheData = await app.redis.get(cacheKey)
+    let dataList: any[] = []
+    let colors: string[] = []
+    let legendItems: string[] = []
+    if (cacheData) {
+      const [nodes, colorNodes, items] = formatLanguageList(
+        JSON.parse(cacheData)
+      )
+      dataList = nodes
+      colors = colorNodes
+      legendItems = items
+    }
+
+    await ctx.resCharts(
+      dataList,
+      {
+        title: `${login}'s Language`,
+        subtitle: '',
+        showTitle: true,
+        showSubtitle: true,
+        theme: 'default',
+        colors,
+        legendItems,
+      },
+      'language'
+    )
   }
 }

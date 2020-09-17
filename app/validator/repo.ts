@@ -14,5 +14,9 @@ export default (app: Application) => {
       showSubtitle: Joi.boolean().default(true),
       from: Joi.string().valid('star', 'fork').default('star'),
     }),
+
+    languageChart: Joi.object().keys({
+      login: Joi.string().required(),
+    }),
   }
 }
